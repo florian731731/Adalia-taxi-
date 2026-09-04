@@ -79,11 +79,27 @@ ul.check li::before{content:"✓";position:absolute;left:0;color:var(--yellow);f
 .testimonial .name{font-weight:700}
 
 /* Destination index grid */
-.dest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
+.dest-category{margin-bottom:44px}
+.dest-category:last-child{margin-bottom:0}
+.dest-category h2{font-size:24px;margin:0 0 6px;font-weight:800}
+.dest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 @media (max-width:820px){.dest-grid{grid-template-columns:1fr 1fr}}
 @media (max-width:560px){.dest-grid{grid-template-columns:1fr}}
-.dest-grid a{display:block;background:#fff;border:1px solid #e6e6e6;border-radius:var(--radius);padding:16px 18px;font-weight:700}
-.dest-grid a:hover{border-color:var(--yellow)}
+.dest-card{display:block;background:#fff;border:1px solid #e6e6e6;border-radius:var(--radius);padding:16px 18px}
+.dest-card:hover{border-color:var(--yellow)}
+.dest-card h3{margin:0 0 6px;font-size:16px;font-weight:700;color:var(--black)}
+.dest-card p{margin:0;font-size:13px;color:var(--muted);font-weight:400}
+
+/* FAQ */
+.faq-item{border-bottom:1px solid #e6e6e6;padding:20px 0}
+.faq-item:first-child{padding-top:0}
+.faq-item h3{margin:0 0 8px;font-size:17px}
+.faq-item p{margin:0;color:var(--muted)}
+
+/* Popular destinations links */
+.popular-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.popular-links a{background:#fff;border:1px solid #e6e6e6;border-radius:20px;padding:8px 16px;font-size:14px;font-weight:600}
+.popular-links a:hover{border-color:var(--yellow);color:#8a6a00}
 
 /* Discover box */
 .discover-box{margin-top:32px;padding:24px 26px;background:var(--gray-light);border-left:4px solid var(--yellow);border-radius:var(--radius)}
