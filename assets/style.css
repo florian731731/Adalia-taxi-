@@ -3,7 +3,7 @@
   --black:#0c0c0c;
   --yellow:#f4b400;
   --gray:#a9a9a9;
-  --gray-light:#f2f2f2;
+  --gray-light:#f4efe6;
   --text:#1c1c1c;
   --muted:#5c5c5c;
   --radius:6px;
@@ -14,9 +14,10 @@ body{
   margin:0;
   font-family:"Helvetica Neue",Arial,sans-serif;
   color:var(--text);
-  background:#fff;
+  background:radial-gradient(1400px 500px at 50% 0, rgba(244,180,0,.055), rgba(244,180,0,0) 65%), #fdfbf7;
   line-height:1.55;
 }
+.card,.dest-card,.testimonial,.form,.guarantees-box{background:#fffdf9}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
 .container{max-width:1180px;margin:0 auto;padding:0 24px}
