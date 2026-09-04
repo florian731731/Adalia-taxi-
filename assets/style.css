@@ -51,7 +51,7 @@ header.topbar{background:var(--black);position:sticky;top:0;z-index:50}
 .breadcrumb a{color:var(--yellow)}
 
 /* Sections */
-.section{padding:64px 0}
+.section{padding:64px 0;scroll-margin-top:80px}
 .section.gray{background:var(--gray-light)}
 .section.dark{background:var(--black);color:#fff}
 .eyebrow{text-transform:uppercase;letter-spacing:1.2px;font-size:13px;font-weight:700;color:var(--yellow)}
@@ -79,7 +79,7 @@ ul.check li::before{content:"✓";position:absolute;left:0;color:var(--yellow);f
 .testimonial .name{font-weight:700}
 
 /* Destination index grid */
-.dest-category{margin-bottom:44px}
+.dest-category{margin-bottom:44px;scroll-margin-top:100px}
 .dest-category:last-child{margin-bottom:0}
 .dest-category h2{font-size:24px;margin:0 0 6px;font-weight:800}
 .dest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
