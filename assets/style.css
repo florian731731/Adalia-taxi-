@@ -31,6 +31,9 @@ header.topbar{background:var(--black);position:sticky;top:0;z-index:50}
 .nav .phone{color:var(--yellow);font-weight:700}
 .nav .btn{background:var(--yellow);color:var(--black);padding:10px 18px;border-radius:var(--radius);font-weight:700}
 .nav .btn:hover{opacity:.9}
+.lang-switch{display:flex;align-items:center;gap:6px;padding:7px 12px;border:1px solid #3a3a3a;border-radius:20px;font-weight:700;font-size:13px;color:#fff}
+.lang-switch:hover{border-color:var(--yellow);color:var(--yellow)}
+.lang-switch .flag{font-size:16px;line-height:1}
 
 /* Hero */
 .hero{background:var(--gray);color:#fff;padding:90px 0 70px}
