@@ -85,6 +85,13 @@ ul.check li::before{content:"✓";position:absolute;left:0;color:var(--yellow);f
 .dest-grid a{display:block;background:#fff;border:1px solid #e6e6e6;border-radius:var(--radius);padding:16px 18px;font-weight:700}
 .dest-grid a:hover{border-color:var(--yellow)}
 
+/* Discover box */
+.discover-box{margin-top:32px;padding:24px 26px;background:var(--gray-light);border-left:4px solid var(--yellow);border-radius:var(--radius)}
+.discover-box h3{margin:0 0 10px;font-size:19px}
+.discover-box p{margin:0 0 12px;color:var(--text);font-size:15px}
+.discover-box a{color:var(--black);font-weight:700;font-size:14px}
+.discover-box a:hover{color:#8a6a00}
+
 /* See-also links */
 .see-also{margin-top:28px;padding-top:20px;border-top:1px solid #e6e6e6;font-size:15px;color:var(--muted)}
 .see-also a{color:var(--black);font-weight:700}
