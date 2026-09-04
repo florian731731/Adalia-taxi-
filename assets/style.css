@@ -137,4 +137,11 @@ footer.footer{background:var(--black);color:#c9c9c9;padding:46px 0 30px;font-siz
 .footer-grid a:hover{color:var(--yellow)}
 .footer-bottom{margin-top:34px;padding-top:20px;border-top:1px solid #2a2a2a;font-size:13px;color:#8a8a8a}
 
+/* Social links */
+.social-links{display:flex;gap:10px;margin-top:16px}
+.social-links a{width:36px;height:36px;border-radius:50%;background:#1c1c1c;border:1px solid #333;display:flex;align-items:center;justify-content:center}
+.social-links a:hover{background:var(--yellow);border-color:var(--yellow)}
+.social-links a:hover svg{fill:var(--black)}
+.social-links svg{width:18px;height:18px;fill:#e6e6e6}
+
 .hidden-seo{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
