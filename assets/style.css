@@ -46,12 +46,24 @@ header.topbar{background:var(--black);position:sticky;top:0;z-index:50}
 .hero .btn-ghost{border:2px solid #fff;color:#fff;padding:12px 24px;border-radius:var(--radius);font-weight:700}
 
 /* Page hero (destination pages) */
-.page-hero{background:var(--black);color:#fff;padding:64px 0 50px}
+.page-hero{background:var(--black);color:#fff;padding:64px 0 50px;position:relative;overflow:hidden}
+.page-hero .container{position:relative;z-index:1}
 .page-hero .kicker{color:var(--yellow);text-transform:uppercase;letter-spacing:1.5px;font-size:13px;font-weight:700;margin-bottom:12px}
 .page-hero h1{font-size:38px;margin:0 0 14px;font-weight:800}
 .page-hero p{font-size:17px;color:#d7d7d7;max-width:640px;margin:0}
 .breadcrumb{font-size:13px;color:#bbb;margin-bottom:18px}
 .breadcrumb a{color:var(--yellow)}
+
+/* Decorative watermark icon for gare/aeroport pages — no photo, brand-safe */
+.page-hero.gare{background:linear-gradient(135deg,#0c0c0c 0%,#171717 100%)}
+.page-hero.aeroport{background:linear-gradient(135deg,#0c0c0c 0%,#14171d 100%)}
+.page-hero.gare::after,.page-hero.aeroport::after{
+  content:"";position:absolute;right:-30px;bottom:-50px;width:360px;height:360px;
+  background-repeat:no-repeat;background-size:contain;pointer-events:none;z-index:0;
+}
+.page-hero.gare::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23f4b400' fill-opacity='0.12' d='M12 2c-4 0-7 .5-7 4v9a3 3 0 0 0 3 3l-2 2v.5h3.5l1.5-1.5h2l1.5 1.5H18v-.5l-2-2a3 3 0 0 0 3-3V6c0-3.5-3-4-7-4zm-5 4h10v5H7V6zm1.5 8a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm7 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z'/%3E%3C/svg%3E")}
+.page-hero.aeroport::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23f4b400' fill-opacity='0.12' d='M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2.5 1.8V22l3.5-1 3.5 1v-1.2L13 19v-5.5l8 2.5z'/%3E%3C/svg%3E")}
+@media (max-width:640px){.page-hero.gare::after,.page-hero.aeroport::after{width:220px;height:220px;right:-20px;bottom:-30px}}
 
 /* Sections */
 .section{padding:64px 0;scroll-margin-top:80px}
