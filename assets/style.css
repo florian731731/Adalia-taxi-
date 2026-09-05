@@ -67,10 +67,9 @@ header.topbar{background:var(--black);position:sticky;top:0;z-index:50}
 @media (max-width:640px){.page-hero.gare::after,.page-hero.aeroport::after{width:220px;height:220px;right:-20px;bottom:-30px}}
 
 /* Trust band (below page-hero) */
-.trust-band{background:var(--black);border-top:1px solid #262626}
+.trust-band{background:var(--yellow)}
 .trust-items{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 28px;padding:16px 0;text-align:center}
-.trust-items span{color:#f0f0f0;font-size:14px;font-weight:700;white-space:nowrap}
-.trust-items span b{color:var(--yellow)}
+.trust-items span{color:var(--black);font-size:14px;font-weight:800;white-space:nowrap}
 @media (max-width:640px){.trust-items{gap:8px 18px}.trust-items span{font-size:13px}}
 
 /* Guarantees box (icon grid on gray background) */
@@ -91,7 +90,8 @@ header.topbar{background:var(--black);position:sticky;top:0;z-index:50}
 .section.gray{background:var(--gray-light)}
 .section.dark{background:var(--black);color:#fff}
 .eyebrow{text-transform:uppercase;letter-spacing:1.2px;font-size:13px;font-weight:700;color:var(--yellow)}
-.section h2{font-size:30px;margin:8px 0 18px;font-weight:800}
+.section h2{font-size:32px;margin:8px 0 22px;font-weight:800;position:relative}
+.section h2::after{content:"";display:block;width:52px;height:5px;background:var(--yellow);margin-top:16px;border-radius:3px}
 .section.dark h2{color:#fff}
 .lead{font-size:17px;color:var(--muted);max-width:720px}
 
@@ -100,8 +100,8 @@ header.topbar{background:var(--black);position:sticky;top:0;z-index:50}
 @media (max-width:820px){.grid-3{grid-template-columns:1fr 1fr}.grid-2{grid-template-columns:1fr}}
 @media (max-width:560px){.grid-3{grid-template-columns:1fr}}
 
-.card{background:#fff;border:1px solid #e6e6e6;border-radius:var(--radius);padding:24px;transition:border-color .15s}
-a.card:hover{border-color:var(--yellow)}
+.card{background:#fffdf9;border:1px solid #e6e6e6;border-top:4px solid var(--yellow);border-radius:var(--radius);padding:24px;transition:transform .15s,box-shadow .15s;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+a.card:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(0,0,0,.08)}
 .card h3{margin:0 0 8px;font-size:18px}
 .card p{margin:0;color:var(--muted);font-size:15px}
 .card a{color:var(--black);font-weight:700}
@@ -117,7 +117,8 @@ ul.check li::before{content:"✓";position:absolute;left:0;color:var(--yellow);f
 .reviews-badge .arrow{color:var(--muted)}
 
 /* Testimonial */
-.testimonial{background:#fff;border:1px solid #e6e6e6;border-radius:var(--radius);padding:32px;max-width:420px}
+.testimonial{background:#fffdf9;border:1px solid #e6e6e6;border-top:4px solid var(--yellow);border-radius:var(--radius);padding:28px 32px 24px;max-width:420px;position:relative}
+.testimonial .stars{color:var(--yellow);letter-spacing:2px;font-size:15px;display:block;margin-bottom:12px}
 .testimonial p{font-style:italic;font-size:17px;margin:0 0 16px}
 .testimonial .name{font-weight:700}
 
