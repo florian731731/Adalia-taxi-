@@ -24,7 +24,7 @@
 <meta name="twitter:title" content="Adalia Taxi Moûtiers — Taxi gares, aéroports et stations">
 <meta name="twitter:description" content="Adalia Taxi : transport de personnes à Moûtiers et en Tarentaise. Gares, aéroports, stations des Trois Vallées et transport médicalisé.">
 <meta name="twitter:image" content="https://adalia-taxi-moutiers.fr/assets/og-image.jpg">
-<link rel="stylesheet" href="/assets/style.css?v=e885b1dc">
+<link rel="stylesheet" href="/assets/style.css?v=1f514bfa">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TaxiService", "name": "Adalia Taxi", "image": "https://adalia-taxi-moutiers.fr/assets/og-image.jpg", "telephone": "+33635405962", "priceRange": "€€", "areaServed": [{"@type": "AdministrativeArea", "name": "Tarentaise, Savoie"}, {"@type": "City", "name": "Moûtiers"}, {"@type": "City", "name": "Albertville"}, {"@type": "City", "name": "Courchevel"}, {"@type": "City", "name": "Méribel"}, {"@type": "City", "name": "Val Thorens"}, {"@type": "City", "name": "Tignes"}, {"@type": "City", "name": "Val d'Isère"}, {"@type": "City", "name": "Bourg-Saint-Maurice"}], "address": {"@type": "PostalAddress", "addressLocality": "Moûtiers", "postalCode": "73600", "addressCountry": "FR"}, "geo": {"@type": "GeoCoordinates", "latitude": 45.485, "longitude": 6.531}, "openingHoursSpecification": {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], "opens": "00:00", "closes": "23:59"}, "sameAs": ["https://www.instagram.com/taxi_moutiers?igsi=eWUwcG5iZGZzcWZp&utm_source=qr", "https://www.facebook.com/share/1SKsXLfpiR/?mibextid=wwXIfr", "https://share.google/HXlowT18m2MhcT6sM"], "url": "https://adalia-taxi-moutiers.fr", "inLanguage": "fr-FR", "aggregateRating": {"@type": "AggregateRating", "ratingValue": "5.0", "reviewCount": 30, "bestRating": "5"}}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Adalia Taxi", "url": "https://adalia-taxi-moutiers.fr", "logo": "https://adalia-taxi-moutiers.fr/assets/icon-512.png", "image": "https://adalia-taxi-moutiers.fr/assets/og-image.jpg", "telephone": "+33635405962", "address": {"@type": "PostalAddress", "addressLocality": "Moûtiers", "postalCode": "73600", "addressCountry": "FR"}}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Adalia Taxi dessert-il toute la Tarentaise ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui. Basé à Moûtiers, Adalia Taxi assure des transferts vers l'ensemble des stations de Tarentaise (3 Vallées, Paradiski, Espace Killy...), ainsi que vers les gares et aéroports de la région Auvergne-Rhône-Alpes et de Genève."}}, {"@type": "Question", "name": "Peut-on réserver un taxi pour l'aéroport ou la gare depuis Moûtiers ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui, Adalia Taxi propose des transferts directs vers les gares (Chambéry, Albertville, Bourg-Saint-Maurice, Lyon Part-Dieu) et les aéroports (Lyon-Saint Exupéry, Genève, Chambéry, Grenoble, Annecy)."}}, {"@type": "Question", "name": "Le transport médicalisé est-il pris en charge ?", "acceptedAnswer": {"@type": "Answer", "text": "Adalia Taxi assure des trajets vers vos rendez-vous médicaux, compatibles avec une prise en charge CPAM sur prescription médicale."}}, {"@type": "Question", "name": "Comment demander un devis ?", "acceptedAnswer": {"@type": "Answer", "text": "Le plus simple est d'appeler directement le 06 35 40 59 62, ou de remplir le formulaire de contact du site avec votre trajet et vos horaires."}}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Review", "itemReviewed": {"@type": "TaxiService", "name": "Adalia Taxi"}, "author": {"@type": "Person", "name": "Maryse"}, "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"}, "reviewBody": "Super taxi ! Florian est très fiable, ponctuel et sympa. Il m'a dépanné 2 fois, et pour de longs trajets. Grande disponibilité, conduite très agréable."}</script>
 </head><body><header class="topbar"><div class="nav">
 <div class="nav-left">
@@ -104,10 +104,59 @@
 <label>Nom</label><input name="Nom" required>
 <label>Téléphone</label><input name="Téléphone" required>
 <label>Email</label><input type="email" name="Email">
-<label>Trajet souhaité</label><input name="Trajet" placeholder="Ex : Moûtiers → Courchevel">
+<label>Adresse de départ</label>
+<div class="autocomplete-wrap">
+<input type="text" id="depart-fr" name="Adresse de départ" placeholder="Ex : Moûtiers" autocomplete="off" required>
+<div class="autocomplete-list" id="depart-fr-list"></div>
+</div>
+<label>Adresse d&#x27;arrivée</label>
+<div class="autocomplete-wrap">
+<input type="text" id="arrivee-fr" name="Adresse d&#x27;arrivée" placeholder="Ex : Aéroport de Chambéry" autocomplete="off">
+<div class="autocomplete-list" id="arrivee-fr-list"></div>
+</div>
 <label>Message</label><textarea name="Message"></textarea>
 <button type="submit">Envoyer ma demande</button>
 </form>
+<script>
+(function(){
+function setupAddressAutocomplete(id){
+var input=document.getElementById(id);
+var list=document.getElementById(id+'-list');
+if(!input||!list)return;
+var timer=null;
+input.addEventListener('input',function(){
+var q=input.value.trim();
+clearTimeout(timer);
+if(q.length<3){list.innerHTML='';list.style.display='none';return;}
+timer=setTimeout(function(){
+fetch('https://api-adresse.data.gouv.fr/search/?q='+encodeURIComponent(q)+'&limit=5')
+.then(function(r){return r.json();})
+.then(function(data){
+list.innerHTML='';
+if(!data.features||!data.features.length){list.style.display='none';return;}
+data.features.forEach(function(f){
+var item=document.createElement('div');
+item.className='autocomplete-item';
+item.textContent=f.properties.label;
+item.addEventListener('mousedown',function(e){
+e.preventDefault();
+input.value=f.properties.label;
+list.innerHTML='';
+list.style.display='none';
+});
+list.appendChild(item);
+});
+list.style.display='block';
+})
+.catch(function(){list.style.display='none';});
+},250);
+});
+input.addEventListener('blur',function(){setTimeout(function(){list.style.display='none';},150);});
+input.addEventListener('focus',function(){if(list.innerHTML)list.style.display='block';});
+}
+['depart-fr','arrivee-fr'].forEach(setupAddressAutocomplete);
+})();
+</script>
 </div></section>
 <footer class="footer"><div class="container footer-grid">
 <div><span class="brand" style="color:#fff;font-weight:800;font-size:20px">Adalia Taxi</span>

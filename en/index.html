@@ -24,7 +24,7 @@
 <meta name="twitter:title" content="Adalia Taxi Moûtiers | Airport &amp; Ski Transfers">
 <meta name="twitter:description" content="Private taxi transfers from Moûtiers to Courchevel, Méribel, Val Thorens and Geneva or Lyon airports. Ski equipment welcome, available 7 days a week.">
 <meta name="twitter:image" content="https://adalia-taxi-moutiers.fr/assets/og-image.jpg">
-<link rel="stylesheet" href="/assets/style.css?v=e885b1dc">
+<link rel="stylesheet" href="/assets/style.css?v=1f514bfa">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TaxiService", "name": "Adalia Taxi", "image": "https://adalia-taxi-moutiers.fr/assets/og-image.jpg", "telephone": "+33635405962", "priceRange": "€€", "areaServed": [{"@type": "AdministrativeArea", "name": "Tarentaise, Savoie"}, {"@type": "City", "name": "Moûtiers"}, {"@type": "City", "name": "Albertville"}, {"@type": "City", "name": "Courchevel"}, {"@type": "City", "name": "Méribel"}, {"@type": "City", "name": "Val Thorens"}, {"@type": "City", "name": "Tignes"}, {"@type": "City", "name": "Val d'Isère"}, {"@type": "City", "name": "Bourg-Saint-Maurice"}], "address": {"@type": "PostalAddress", "addressLocality": "Moûtiers", "postalCode": "73600", "addressCountry": "FR"}, "geo": {"@type": "GeoCoordinates", "latitude": 45.485, "longitude": 6.531}, "openingHoursSpecification": {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], "opens": "00:00", "closes": "23:59"}, "sameAs": ["https://www.instagram.com/taxi_moutiers?igsi=eWUwcG5iZGZzcWZp&utm_source=qr", "https://www.facebook.com/share/1SKsXLfpiR/?mibextid=wwXIfr", "https://share.google/HXlowT18m2MhcT6sM"], "url": "https://adalia-taxi-moutiers.fr", "inLanguage": "en", "aggregateRating": {"@type": "AggregateRating", "ratingValue": "5.0", "reviewCount": 30, "bestRating": "5"}}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Adalia Taxi", "url": "https://adalia-taxi-moutiers.fr", "logo": "https://adalia-taxi-moutiers.fr/assets/icon-512.png", "image": "https://adalia-taxi-moutiers.fr/assets/og-image.jpg", "telephone": "+33635405962", "address": {"@type": "PostalAddress", "addressLocality": "Moûtiers", "postalCode": "73600", "addressCountry": "FR"}}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Do you serve all the Tarentaise ski resorts?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Based in Moûtiers, Adalia Taxi provides transfers to every resort in the Trois Vallées and Espace Killy ski areas, as well as to regional train stations and airports (Geneva, Lyon, Chambéry, Grenoble, Annecy)."}}, {"@type": "Question", "name": "Can I book an airport transfer to or from Geneva or Lyon?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, direct transfers are available to Geneva Airport and Lyon-Saint Exupéry Airport, with flight tracking included."}}, {"@type": "Question", "name": "Is there room for ski equipment and luggage?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, our vehicles are equipped to carry skis, snowboards and luggage at no extra charge."}}, {"@type": "Question", "name": "How do I get a quote?", "acceptedAnswer": {"@type": "Answer", "text": "The simplest way is to call us directly at +33 6 35 40 59 62, or fill in the contact form with your route and schedule."}}]}</script>
 </head><body><header class="topbar"><div class="nav">
 <div class="nav-left">
@@ -94,10 +94,59 @@
 <label>Name</label><input name="Name" required>
 <label>Phone</label><input name="Phone" required>
 <label>Email</label><input type="email" name="Email">
-<label>Route</label><input name="Route" placeholder="E.g. Moûtiers → Courchevel">
+<label>Pickup address</label>
+<div class="autocomplete-wrap">
+<input type="text" id="depart-en" name="Pickup address" placeholder="E.g. Moûtiers" autocomplete="off" required>
+<div class="autocomplete-list" id="depart-en-list"></div>
+</div>
+<label>Drop-off address</label>
+<div class="autocomplete-wrap">
+<input type="text" id="arrivee-en" name="Drop-off address" placeholder="E.g. Chambéry Airport" autocomplete="off">
+<div class="autocomplete-list" id="arrivee-en-list"></div>
+</div>
 <label>Message</label><textarea name="Message"></textarea>
 <button type="submit">Send my request</button>
 </form>
+<script>
+(function(){
+function setupAddressAutocomplete(id){
+var input=document.getElementById(id);
+var list=document.getElementById(id+'-list');
+if(!input||!list)return;
+var timer=null;
+input.addEventListener('input',function(){
+var q=input.value.trim();
+clearTimeout(timer);
+if(q.length<3){list.innerHTML='';list.style.display='none';return;}
+timer=setTimeout(function(){
+fetch('https://api-adresse.data.gouv.fr/search/?q='+encodeURIComponent(q)+'&limit=5')
+.then(function(r){return r.json();})
+.then(function(data){
+list.innerHTML='';
+if(!data.features||!data.features.length){list.style.display='none';return;}
+data.features.forEach(function(f){
+var item=document.createElement('div');
+item.className='autocomplete-item';
+item.textContent=f.properties.label;
+item.addEventListener('mousedown',function(e){
+e.preventDefault();
+input.value=f.properties.label;
+list.innerHTML='';
+list.style.display='none';
+});
+list.appendChild(item);
+});
+list.style.display='block';
+})
+.catch(function(){list.style.display='none';});
+},250);
+});
+input.addEventListener('blur',function(){setTimeout(function(){list.style.display='none';},150);});
+input.addEventListener('focus',function(){if(list.innerHTML)list.style.display='block';});
+}
+['depart-en','arrivee-en'].forEach(setupAddressAutocomplete);
+})();
+</script>
 </div></section>
 <footer class="footer"><div class="container footer-grid">
 <div><span class="brand" style="color:#fff;font-weight:800;font-size:20px">Adalia Taxi</span>
