@@ -41,3 +41,4 @@ Moûtiers, Albertville, Courchevel, Méribel, Val Thorens, Tignes, Val d'Isère,
 - [Brides-les-Bains](https://adalia-taxi-moutiers.fr/taxi-moutiers-brides-les-bains/)
 - [Bozel](https://adalia-taxi-moutiers.fr/taxi-moutiers-bozel/)
 - [Salins-les-Thermes](https://adalia-taxi-moutiers.fr/taxi-moutiers-salins-les-thermes/)
+- [Albertville](https://adalia-taxi-moutiers.fr/taxi-moutiers-albertville/)
