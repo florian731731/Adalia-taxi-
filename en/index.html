@@ -97,12 +97,12 @@
 <label for="email-en">Email</label><input type="email" id="email-en" name="Email">
 <label for="depart-en">Pickup address</label>
 <div class="autocomplete-wrap">
-<input type="text" id="depart-en" name="Pickup address" placeholder="E.g. Moûtiers" autocomplete="off" required>
+<input type="text" id="depart-en" name="Pickup address" placeholder="E.g. Moûtiers" autocomplete="off" class="js-address-autocomplete" required>
 <div class="autocomplete-list" id="depart-en-list"></div>
 </div>
 <label for="arrivee-en">Drop-off address</label>
 <div class="autocomplete-wrap">
-<input type="text" id="arrivee-en" name="Drop-off address" placeholder="E.g. Chambéry Airport" autocomplete="off">
+<input type="text" id="arrivee-en" name="Drop-off address" placeholder="E.g. Chambéry Airport" autocomplete="off" class="js-address-autocomplete">
 <div class="autocomplete-list" id="arrivee-en-list"></div>
 </div>
 <div class="quick-routes-wrap" data-depart="depart-en" data-arrivee="arrivee-en">
@@ -116,65 +116,6 @@
 <p class="form-note">Average response time: 1 hour, no obligation.</p>
 <a class="whatsapp-btn" href="https://wa.me/33635405962?text=Hello%2C%20I%20would%20like%20a%20quote%20for%20a%20taxi%20ride." target="_blank" rel="noopener"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.34.68 4.523 1.86 6.36L4 29l7.86-1.83A11.94 11.94 0 0 0 16.001 27C22.63 27 28 21.627 28 15S22.63 3 16.001 3zm0 21.6c-1.98 0-3.83-.55-5.41-1.5l-.39-.23-4.66 1.09 1.11-4.54-.25-.4A9.55 9.55 0 0 1 6.4 15c0-5.3 4.3-9.6 9.6-9.6S25.6 9.7 25.6 15s-4.3 9.6-9.6 9.6zm5.27-7.19c-.29-.15-1.71-.84-1.97-.94-.26-.1-.46-.15-.65.15-.19.29-.75.94-.92 1.13-.17.19-.34.22-.63.07-.29-.15-1.21-.45-2.31-1.43-.85-.76-1.43-1.69-1.6-1.98-.17-.29-.02-.44.13-.59.13-.13.29-.34.44-.51.15-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.65-1.58-.9-2.16-.24-.57-.48-.5-.65-.5-.17 0-.36-.02-.56-.02-.19 0-.51.07-.78.36-.26.29-1.02 1-1.02 2.44s1.05 2.83 1.19 3.03c.15.19 2.05 3.14 4.98 4.4.7.3 1.24.48 1.67.62.7.22 1.34.19 1.84.12.56-.08 1.71-.7 1.96-1.38.24-.68.24-1.26.17-1.38-.07-.12-.26-.19-.55-.34z"/></svg>Ask via WhatsApp</a>
 </form>
-<script>
-(function(){
-function setupAddressAutocomplete(id){
-var input=document.getElementById(id);
-var list=document.getElementById(id+'-list');
-if(!input||!list)return;
-var timer=null;
-input.addEventListener('input',function(){
-var q=input.value.trim();
-clearTimeout(timer);
-if(q.length<3){list.innerHTML='';list.style.display='none';return;}
-timer=setTimeout(function(){
-fetch('https://api-adresse.data.gouv.fr/search/?q='+encodeURIComponent(q)+'&limit=5')
-.then(function(r){return r.json();})
-.then(function(data){
-list.innerHTML='';
-if(!data.features||!data.features.length){list.style.display='none';return;}
-data.features.forEach(function(f){
-var item=document.createElement('div');
-item.className='autocomplete-item';
-item.textContent=f.properties.label;
-item.addEventListener('mousedown',function(e){
-e.preventDefault();
-input.value=f.properties.label;
-list.innerHTML='';
-list.style.display='none';
-});
-list.appendChild(item);
-});
-list.style.display='block';
-})
-.catch(function(){list.style.display='none';});
-},250);
-});
-input.addEventListener('blur',function(){setTimeout(function(){list.style.display='none';},150);});
-input.addEventListener('focus',function(){if(list.innerHTML)list.style.display='block';});
-}
-['depart-en','arrivee-en'].forEach(setupAddressAutocomplete);
-})();
-</script>
-<script>
-(function(){
-document.querySelectorAll('.quick-routes-wrap[data-depart]').forEach(function(wrap){
-var departInput = document.getElementById(wrap.getAttribute('data-depart'));
-var arriveeInput = document.getElementById(wrap.getAttribute('data-arrivee'));
-var active = arriveeInput;
-if(departInput) departInput.addEventListener('focus', function(){ active = departInput; });
-if(arriveeInput) arriveeInput.addEventListener('focus', function(){ active = arriveeInput; });
-wrap.querySelectorAll('.chip[data-value]').forEach(function(chip){
-chip.addEventListener('click', function(){
-if(!active) return;
-active.value = chip.getAttribute('data-value');
-active.dispatchEvent(new Event('input'));
-active.focus();
-});
-});
-});
-})();
-</script>
 </div></section>
 <footer class="footer"><div class="container footer-grid">
 <div><span class="brand" style="color:#fff;font-weight:800;font-size:20px">Adalia Taxi</span>
@@ -191,4 +132,4 @@ active.focus();
 <a href="/">Version française</a></div>
 </div>
 <div class="container footer-bottom">© Adalia Taxi — All rights reserved.</div>
-</footer><a href="tel:+33635405962" class="mobile-call-bar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2z"/></svg>Call now — 06 35 40 59 62</a></body></html>
+</footer><a href="tel:+33635405962" class="mobile-call-bar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2z"/></svg>Call now — 06 35 40 59 62</a><script src="/assets/address-form.js?v=0925c6ad" defer></script></body></html>
