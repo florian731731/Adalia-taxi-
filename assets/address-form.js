@@ -50,4 +50,56 @@ active.focus();
 });
 });
 });
+
+// Pre-remplissage de la destination depuis un lien "?to=..." (boutons "Demander un devis" des pages destinations)
+var toParam = null;
+try { toParam = new URLSearchParams(location.search).get('to'); } catch(e){}
+if (toParam) {
+var target = document.getElementById('arrivee-fr') || document.getElementById('arrivee-en');
+if (target) {
+target.value = toParam;
+target.dispatchEvent(new Event('input'));
+}
+if (window.history && window.history.replaceState) {
+window.history.replaceState(null, '', location.pathname + location.hash);
+}
+}
+
+// Suggestion (non forcée) de changer de langue si elle ne correspond pas à celle du navigateur.
+// Volontairement pas de redirection automatique : Google déconseille cette pratique pour le SEO multilingue.
+function initLangBanner(){
+var isFr = (document.documentElement.lang || 'fr').indexOf('fr') === 0;
+var browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+var browserIsFr = browserLang.indexOf('fr') === 0;
+var dismissed = false;
+try { dismissed = localStorage.getItem('lang-banner-dismissed') === '1'; } catch(e){}
+if (dismissed) return;
+var suggestEn = isFr && !browserIsFr;
+var suggestFr = !isFr && browserIsFr;
+if (!suggestEn && !suggestFr) return;
+var switchLink = document.querySelector('.lang-switch');
+var href = switchLink ? switchLink.getAttribute('href') : (suggestEn ? '/en/' : '/');
+var text = suggestEn ? 'It looks like your browser is in English.' : 'On dirait que votre navigateur est en français.';
+var btnLabel = suggestEn ? 'View in English' : 'Voir en français';
+var bar = document.createElement('div');
+bar.className = 'lang-banner';
+var span = document.createElement('span');
+span.textContent = text;
+var link = document.createElement('a');
+link.href = href;
+link.textContent = btnLabel;
+var closeBtn = document.createElement('button');
+closeBtn.type = 'button';
+closeBtn.setAttribute('aria-label', 'Fermer');
+closeBtn.textContent = '\u00d7';
+bar.appendChild(span);
+bar.appendChild(link);
+bar.appendChild(closeBtn);
+document.body.insertBefore(bar, document.body.firstChild);
+closeBtn.addEventListener('click', function(){
+bar.remove();
+try { localStorage.setItem('lang-banner-dismissed', '1'); } catch(e){}
+});
+}
+initLangBanner();
 })();

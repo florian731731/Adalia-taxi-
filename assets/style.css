@@ -198,10 +198,18 @@ ul.check li::before{content:"✓";position:absolute;left:0;color:var(--yellow);f
 .quick-routes{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 4px}
 .chip{background:var(--gray-light);border:1px solid #e6e6e6;border-radius:20px;padding:7px 14px;font-size:13px;font-weight:600;cursor:pointer;color:var(--text)}
 .chip:hover{border-color:var(--yellow);background:#fff}
-.whatsapp-btn{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:12px;background:#075E54;color:#fff;padding:12px 20px;border-radius:var(--radius);font-weight:700;font-size:15px}
-.whatsapp-btn:hover{opacity:.9}
-.whatsapp-btn svg{width:18px;height:18px;fill:#fff}
+.contact-alt-buttons{display:flex;gap:10px;margin-top:12px}
+.whatsapp-btn,.sms-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:12px 16px;border-radius:var(--radius);font-weight:700;font-size:15px;color:#fff}
+.whatsapp-btn{background:#075E54}
+.sms-btn{background:var(--black)}
+.whatsapp-btn:hover,.sms-btn:hover{opacity:.9}
+.whatsapp-btn svg,.sms-btn svg{width:18px;height:18px;fill:#fff}
 .form-note{margin-top:10px;font-size:13px;color:var(--muted);text-align:center}
+
+/* Language suggestion banner */
+.lang-banner{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;background:var(--gray-light);color:var(--text);padding:10px 20px;font-size:14px;text-align:center}
+.lang-banner a{color:var(--yellow-text);font-weight:700;text-decoration:underline}
+.lang-banner button{background:none;border:0;font-size:18px;line-height:1;cursor:pointer;color:var(--muted);padding:0 4px}
 
 /* CTA band */
 .cta-band{background:var(--black);color:#fff;padding:44px 0;text-align:center}
