@@ -110,6 +110,12 @@ ul.check{list-style:none;padding:0;margin:0}
 ul.check li{padding:8px 0 8px 26px;position:relative;color:var(--text)}
 ul.check li::before{content:"✓";position:absolute;left:0;color:var(--yellow);font-weight:800}
 
+/* Google reviews badge */
+.reviews-badge{display:inline-flex;align-items:center;gap:8px;margin-top:18px;padding:10px 18px;background:#fff;border:1px solid #e6e6e6;border-radius:30px;font-size:14px;color:var(--text)}
+.reviews-badge:hover{border-color:var(--yellow)}
+.reviews-badge .stars{color:var(--yellow);letter-spacing:1px}
+.reviews-badge .arrow{color:var(--muted)}
+
 /* Testimonial */
 .testimonial{background:#fff;border:1px solid #e6e6e6;border-radius:var(--radius);padding:32px;max-width:420px}
 .testimonial p{font-style:italic;font-size:17px;margin:0 0 16px}
