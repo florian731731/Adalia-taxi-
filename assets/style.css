@@ -149,11 +149,15 @@ ul.check li::before{content:"✓";position:absolute;left:0;color:var(--yellow);f
 .popular-links a{background:#fff;border:1px solid #e6e6e6;border-radius:20px;padding:8px 16px;font-size:14px;font-weight:600}
 .popular-links a:hover{border-color:var(--yellow);color:#8a6a00}
 
-/* Full destinations menu (homepage) */
-.menu-group{margin-top:28px}
-.menu-group:first-child{margin-top:8px}
-.menu-group h3{font-size:16px;margin:0 0 4px}
-.menu-group .popular-links{margin-top:10px}
+/* Category tiles (homepage) — icon-card menu, few uniform entries */
+.cat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:28px}
+@media (max-width:980px){.cat-grid{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:620px){.cat-grid{grid-template-columns:repeat(2,1fr)}}
+.cat-tile{display:block;text-align:center}
+.cat-tile .cat-icon{display:flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:50%;background:var(--yellow);margin:0 auto 14px}
+.cat-tile .cat-icon svg{width:26px;height:26px;fill:var(--black)}
+.cat-tile h3{font-size:16px}
+.cat-tile p{font-size:13px}
 
 /* Discover box */
 .discover-box{margin-top:32px;padding:24px 26px;background:var(--gray-light);border-left:4px solid var(--yellow);border-radius:var(--radius)}
