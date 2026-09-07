@@ -149,6 +149,12 @@ ul.check li::before{content:"✓";position:absolute;left:0;color:var(--yellow);f
 .popular-links a{background:#fff;border:1px solid #e6e6e6;border-radius:20px;padding:8px 16px;font-size:14px;font-weight:600}
 .popular-links a:hover{border-color:var(--yellow);color:#8a6a00}
 
+/* Full destinations menu (homepage) */
+.menu-group{margin-top:28px}
+.menu-group:first-child{margin-top:8px}
+.menu-group h3{font-size:16px;margin:0 0 4px}
+.menu-group .popular-links{margin-top:10px}
+
 /* Discover box */
 .discover-box{margin-top:32px;padding:24px 26px;background:var(--gray-light);border-left:4px solid var(--yellow);border-radius:var(--radius)}
 .discover-box p{margin:0 0 12px;color:var(--text);font-size:15px}
