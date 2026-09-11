@@ -1,3 +1,5 @@
 .git
 .git/**
 add_reviews.py
+README.md
+wrangler.toml
