@@ -57,7 +57,13 @@ header.topbar{background:var(--black);position:sticky;top:0;z-index:50}
 }
 
 /* Hero */
-.hero{background:var(--black);color:#fff;padding:90px 0 70px}
+.hero{
+  background:
+    linear-gradient(rgba(10,10,10,.74), rgba(10,10,10,.74)),
+    url("/assets/photos/fond-montagnes-savoie.jpg") no-repeat center center;
+  background-size:cover;
+  color:#fff;padding:90px 0 70px;
+}
 .hero .kicker{text-transform:uppercase;letter-spacing:1.5px;font-size:13px;font-weight:700;margin-bottom:14px}
 .hero h1{font-size:52px;line-height:1.05;margin:0 0 18px;font-weight:800}
 .hero .rule{width:70px;height:4px;background:var(--yellow);margin:0 0 22px}
@@ -67,7 +73,13 @@ header.topbar{background:var(--black);position:sticky;top:0;z-index:50}
 .hero .btn-ghost{border:2px solid #fff;color:#fff;padding:12px 24px;border-radius:var(--radius);font-weight:700}
 
 /* Page hero (destination pages) */
-.page-hero{background:var(--black);color:#fff;padding:64px 0 50px;position:relative;overflow:hidden}
+.page-hero{
+  background:
+    linear-gradient(rgba(10,10,10,.76), rgba(10,10,10,.76)),
+    url("/assets/photos/fond-montagnes-savoie.jpg") no-repeat center center;
+  background-size:cover;
+  color:#fff;padding:64px 0 50px;position:relative;overflow:hidden;
+}
 .page-hero .container{position:relative;z-index:1}
 .page-hero .kicker{color:var(--yellow);text-transform:uppercase;letter-spacing:1.5px;font-size:13px;font-weight:700;margin-bottom:12px}
 .page-hero h1{font-size:38px;margin:0 0 14px;font-weight:800}
