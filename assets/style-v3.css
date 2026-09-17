@@ -15,8 +15,20 @@ body{
   margin:0;
   font-family:"Helvetica Neue",Arial,sans-serif;
   color:var(--text);
-  background:radial-gradient(1400px 500px at 50% 0, rgba(244,180,0,.055), rgba(244,180,0,0) 65%), #fdfbf7;
+  background-color:#fdfbf7;
+  background-image:
+    radial-gradient(1400px 500px at 50% 0, rgba(244,180,0,.05), rgba(244,180,0,0) 65%),
+    linear-gradient(rgba(253,251,247,.88), rgba(253,251,247,.88)),
+    url("/assets/photos/fond-montagnes-savoie.jpg");
+  background-repeat:no-repeat, no-repeat, no-repeat;
+  background-position:center top, center center, center center;
+  background-size:auto, auto, cover;
+  background-attachment:scroll, scroll, fixed;
   line-height:1.55;
+}
+@media (max-width:780px){
+  /* fond fixe = lourd/instable sur mobile : on repasse en défilement normal */
+  body{background-attachment:scroll, scroll, scroll}
 }
 .card,.dest-card,.testimonial,.form,.guarantees-box{background:#fffdf9}
 img{max-width:100%;display:block}
