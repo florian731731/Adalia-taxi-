@@ -49,6 +49,13 @@ header.topbar{background:var(--black);position:sticky;top:0;z-index:50}
 .lang-switch:hover{border-color:var(--yellow);color:var(--yellow)}
 .lang-switch .flag{font-size:16px;line-height:1}
 
+/* Nav mobile — évite que les liens sortent de l'écran (Contact inatteignable) */
+@media (max-width:640px){
+  .nav{gap:10px 16px;padding:14px 16px}
+  .nav-left,.nav-right{flex-wrap:wrap;row-gap:10px;gap:10px 14px}
+  .nav a{white-space:normal}
+}
+
 /* Hero */
 .hero{background:var(--black);color:#fff;padding:90px 0 70px}
 .hero .kicker{text-transform:uppercase;letter-spacing:1.5px;font-size:13px;font-weight:700;margin-bottom:14px}
