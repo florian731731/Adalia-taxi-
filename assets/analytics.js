@@ -52,7 +52,7 @@
     div.setAttribute("aria-label", isEN ? "Cookie consent" : "Consentement aux cookies");
     var text = isEN
       ? "We use cookies only to measure site traffic (Google Analytics). You can accept or decline &mdash; this doesn&#x27;t affect your ability to book a taxi. <a href=\"" + (isEN ? "/en/faq/" : "/faq/") + "\">Learn more</a>"
-      : "Nous utilisons des cookies uniquement pour mesurer l&#x27;audience du site (Google Analytics). Vous pouvez accepter ou refuser &mdash; cela n&#x27;affecte pas votre possibilité de réserver un taxi. <a href=\"/faq/\">En savoir plus</a>";
+      : "Nous utilisons des cookies uniquement pour mesurer l&#x27;audience du site (Google Analytics). Vous pouvez accepter ou refuser &mdash; cela n&#x27;affecte pas votre possibilit&eacute; de r&eacute;server un taxi. <a href=\"/faq/\">En savoir plus</a>";
     var acceptLabel = isEN ? "Accept" : "Accepter";
     var declineLabel = isEN ? "Decline" : "Refuser";
     div.innerHTML =
